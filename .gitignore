@@ -1,0 +1,8 @@
+.vscode/launch.json
+.vscode/tasks.json
+bin/insertion_sort.exe
+bin/knapsack.exe
+bin/log_fib.exe
+bin/log_power.exe
+bin/merge_sort.exe
+bin/rodcutting.exe
