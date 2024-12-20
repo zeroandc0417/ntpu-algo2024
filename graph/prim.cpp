@@ -3,10 +3,11 @@
 #include <vector>
 #include <map>
 #include <queue>
+#include <climits>
 
 using namespace std;
 
-void prim(vector<float>& dist, vector<int>& parent, vector<bool>& visited, vector<vector<float>>& g, int s, int n){
+void prim(vector<int>& dist, vector<int>& parent, vector<bool>& visited, vector<vector<int>>& g, int s, int n){
     priority_queue<pair<float, int>, vector<pair<float, int>>, greater<pair<float, int>>> pq;
     pq.push({0, s-1});
 
@@ -35,10 +36,10 @@ int main(){
     int n, m;
     cin >> n >> m;
 
-    vector<vector<float>> g(n, vector<float>(n, -1));
+    vector<vector<int>> g(n, vector<int>(n, -1));
     for(int i = 0; i < m; i++){
         int r, c;
-        float w;
+        int w;
         cin >> r >> c >> w;
         g[r-1][c-1] = w;
         g[c-1][r-1] = w;
@@ -46,23 +47,28 @@ int main(){
     int s;
     cin >> s;
 
-    vector<float> dist(n, INT_MAX);
+    vector<int> dist(n, INT_MAX);
     dist[s-1] = 0;
     vector<int> parent(n, -1);
     vector<bool> visited(n, false);
-
-    priority_queue<pair<float, int>, vector<pair<float, int>>, greater<pair<float, int>>> pq;
-    pq.push({0, s-1});
-
+  
     prim(dist, parent, visited, g, s, n);
 
     for(int i = 0; i < n; i++) {
-        cout << (parent[i] == -1 ? 0 : parent[i] + 1) << ' ';
+      	if(i == n-1){
+        	cout << parent[i] + 1 << endl;
+        } else {
+        	cout << (parent[i]+1) << ' ';
+        }
     }
-    cout << endl;
+    
     int sum = 0;
-    for(auto i : dist){
-        sum += i;
+    for(int i = 0; i < n; i++) {
+        if(dist[i] == INT_MAX) {
+            cout << 0 << endl;
+            return 0;
+        }
+	    sum += dist[i];
     }
     cout << sum << endl;
     return 0;

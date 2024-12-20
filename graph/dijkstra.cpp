@@ -71,18 +71,24 @@ int main() {
     dijkstra(graph, start, dist, parent);
 
     for (int i = 0; i < n; i++) {
+      if(i == n-1){
+        if(dist[i] == INF){
+          cout << -1 << endl;
+        } else {
+          cout << dist[i] << endl;
+        }
+        break;
+      }
         if (dist[i] == INF) {
             cout << -1 << " ";
         } else {
             cout << dist[i] << " ";
         }
     }
-    cout << "\n";
-
     for (int i = 0; i < n; i++) {
-        cout << (parent[i] == -1 ? 0 : parent[i] + 1) << " ";
+      if(i == n-1) cout << parent[i] + 1 << endl;
+      else cout << parent[i] + 1 << " ";
     }
-    cout << "\n";
 
     return 0;
 }

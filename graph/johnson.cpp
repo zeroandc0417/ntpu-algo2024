@@ -80,6 +80,14 @@ int main() {
     }
 
     for (int i = 0; i < n; i++) {
+      	if(i == n-1){
+          if(h[i] == INF){
+            cout << "N" << endl;
+          } else {
+            cout << h[i] << endl;
+          }
+          continue;
+        }
         if (h[i] == INF) {
             cout << "N ";
         } else {
@@ -107,17 +115,23 @@ int main() {
             }
         }
     }
-    cout << endl;
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
+          if(j == n-1){
+            if(dist[i][j] == INF){
+              cout << "N" << endl;
+            } else {
+              cout << dist[i][j] << endl;
+            }
+            continue;
+          }
             if (dist[i][j] == INF) {
                 cout << "N ";
             } else {
                 cout << dist[i][j] << " ";
             }
         }
-        cout << "\n";
     }
 
     return 0;
